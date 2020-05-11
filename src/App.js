@@ -4,12 +4,7 @@ import Newtask from './components/Newtask';
 import Showtask from './components/Showtask';
 
 function App() {
-  const [task, setTask] = useState([{content:"Complete Todo List", completed: true}])
-  
-  // console.log(mycookie)
-  // if(mycookie !=undefined){
-  //   setTask(mycookie)
-  // }
+  const [task, setTask] = useState([])
 
   return (
     <div className="App">

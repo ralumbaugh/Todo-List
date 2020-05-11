@@ -1,30 +1,16 @@
 import React, { useState } from 'react';
 
-const Newtask = props => {
-    const {task, setTask} = props;
+const Newtask = ({task, setTask}) => {
     const [newTask, setNewTask] = useState("");
     const [newTaskError, setNewTaskError] = useState("");
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        let allTasks = []
-        task.map(content =>{
-            if(allTasks.includes(content.content) === false){
-                allTasks.push(content.content)
-            }
-        })
-
         if(newTask.length <= 0){
             setNewTaskError("Please input a task");
         }
-
-        else if(allTasks.includes(newTask) === true){
-            setNewTaskError("This task is already listed. Please input a new task");
-        }
-
         else{
-            let submitTask = [...task, {content: newTask, completed: false}];
-            setTask(submitTask);
+            setTask([...task, {content: newTask, completed: false}]);
             setNewTask("");
             setNewTaskError("");
         }
@@ -40,20 +26,13 @@ const Newtask = props => {
         document.cookie = "alltasks=" + JSON.stringify(task);
     }
 
-    // const loadCookies = (e) =>{
-    //     e.preventDefault();
-    //     const allcookies = document.cookie;
-    //     const cookiearray = allcookies.split('alltasks=');
-    //     const mycookie = cookiearray[1]
-    //     console.log(mycookie)
-    //     // If I copy and paste the results of my console.log(mycookie) into the set task function below, I can get it to load properly. However, if I just leave it as a mycookie variable, I get an error saying that task.map is not a function.
-    //     // setTask(mycookie)
-    // }
-
-    // const seeTask = (e) =>{
-    //     e.preventDefault();
-    //     console.log(task)
-    // }
+    const loadCookies = (e) =>{
+        e.preventDefault();
+        const allcookies = document.cookie;
+        const cookiearray = allcookies.split('alltasks=');
+        const mycookie = cookiearray[1]
+        setTask(JSON.parse(mycookie))
+    }
 
     return(
         <div>
@@ -65,9 +44,8 @@ const Newtask = props => {
                 </div>
                 <p>{newTaskError}</p>
             </form>
-            {/* <button onClick={saveForLater}>Save for Later</button>
-            <button onClick={loadCookies}>Reload List</button> */}
-            {/* <button onClick={seeTask}>Console Log</button> */}
+            <button onClick={saveForLater}>Save for Later</button>
+            <button onClick={loadCookies}>Reload List</button>
         </div>
     )
 }
