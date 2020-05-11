@@ -1,0 +1,25 @@
+button{
+    border-radius: 5px;
+    margin: 5px;
+}
+.showtasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.individualtask {
+    display: flex;
+    flex-direction: row;
+    border: 1px black solid;
+    align-items: center;
+    justify-content: flex-start;
+    width: inherit;
+}
+.completed {
+    text-decoration: line-through;
+}
+
+.individualtask button{
+    height: 25px;
+}

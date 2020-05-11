@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Newtask from './components/Newtask';
+import Showtask from './components/Showtask';
 
 function App() {
+  const [task, setTask] = useState([{content:"Complete Todo List", completed: true}])
+  
+  // console.log(mycookie)
+  // if(mycookie !=undefined){
+  //   setTask(mycookie)
+  // }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Newtask task={task} setTask = {setTask} />
+      <Showtask task = {task} setTask = {setTask} />
     </div>
   );
 }
